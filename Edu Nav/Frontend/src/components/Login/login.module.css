@@ -1,0 +1,228 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 1.5rem;
+}
+
+.login-page-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 6rem;
+  z-index: 50;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.btn {
+  width: 8rem;
+  height: 2.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-container-wrapper {
+  position: relative;
+  width: 512px;
+  height: 490px;
+  margin: 0 auto;
+  z-index: 10;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.login-container,
+.register-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 3rem;
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backface-visibility: hidden;
+  transition: transform 0.8s ease-in-out;
+}
+
+.login-container {
+  transform: rotateY(0deg);
+}
+
+.register-container {
+  transform: rotateY(180deg);
+}
+
+.form-container-wrapper.login-active .login-container {
+  transform: rotateY(0deg);
+}
+
+.form-container-wrapper.login-active .register-container {
+  transform: rotateY(180deg);
+}
+
+.form-container-wrapper.register-active .login-container {
+  transform: rotateY(-180deg);
+}
+
+.form-container-wrapper.register-active .register-container {
+  transform: rotateY(0deg);
+}
+
+.form-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.form-header span {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.form-header button {
+  color: #93c5fd;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.form-header button:hover {
+  text-decoration: underline;
+}
+
+.form-header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 3rem;
+  font-size: 1rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 9999px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.input-field:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.25rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  background-color: white;
+  color: #2563eb;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.form-footer label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-footer input[type="checkbox"] {
+  margin-right: 0.5rem;
+  border-radius: 9999px;
+  color: #2563eb;
+  background-color: white;
+}
+
+.form-footer a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 640px) {
+  .form-container-wrapper {
+    max-width: 28rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .form-container-wrapper {
+    max-width: 32rem;
+  }
+}
