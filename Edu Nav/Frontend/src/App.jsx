@@ -1,25 +1,34 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import { Routes, Route } from "react-router-dom";
+import { Provider } from 'react-redux';
+import Store from './components/SagaRedux/Store'
+import PersistentAuth from './util/PersistentAuth'
+import ProtectedRoute from './util/ProtectedRoute'
+import MainLayout from './components/MainLayout/MainLayout';
 import Home from './components/Home/Home';
+import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login/Login'
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        
+    <Provider store={Store}>
+      <PersistentAuth>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+          {/* <Route path="/aboutus" element={<MainLayout><AboutUs /></MainLayout>} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Login />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <MainLayout><Dashboard /></MainLayout>
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
-
-        <Footer />
-      </div>
-    </BrowserRouter>
+      </PersistentAuth>
+    </Provider>
   );
-}
+};
 
 export default App;
