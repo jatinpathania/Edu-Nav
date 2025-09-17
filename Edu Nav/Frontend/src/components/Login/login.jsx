@@ -1,75 +1,117 @@
-import React, { useState } from "react";
-import "./login.css"; 
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import styles from "./login.module.css"; 
 
 const Login = () => {
+  const location = useLocation();
   const [isLogin, setIsLogin] = useState(true);
 
+  useEffect(() => {
+    if (location.pathname === "/signup") {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+  }, [location.pathname]);
+
   return (
-    <div className="wrapper">
-      <nav className="nav">
-      
-        <div className="nav-button">
-          <button className={`btn ${isLogin ? "white-btn" : ""}`} onClick={() => setIsLogin(true)}>Login</button>
-          <button className={`btn ${!isLogin ? "white-btn" : ""}`} id="registerBtn" onClick={() => setIsLogin(false)}>Register</button>
+    <div
+      className={styles['login-page']}
+      style={{
+        backgroundImage: `url('https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`
+      }}
+    >
+      <div className={styles['login-page-overlay']}></div>
+
+      <nav className={styles.nav}>
+        <div className={styles['nav-buttons']}>
+          <button
+            className={`${styles.btn} ${isLogin ? styles.active : ""}`}
+            onClick={() => setIsLogin(true)}
+          >
+            Login
+          </button>
+          <button
+            className={`${styles.btn} ${!isLogin ? styles.active : ""}`}
+            onClick={() => setIsLogin(false)}
+          >
+            Register
+          </button>
         </div>
       </nav>
 
-      <div className="form-box">
-        <div className={`login-container ${!isLogin ? "active" : ""}`}>
-          <div className="top">
-            <span>Don’t have an account?{" "}<a href="#" onClick={() => setIsLogin(false)}>Sign Up</a></span>
-            <header>Login</header>
+      {/* The class on this container now triggers the 3D animation */}
+      <div className={`${styles['form-container-wrapper']} ${isLogin ? styles['login-active'] : styles['register-active']}`}>
+        {/* Login Form Container */}
+        <div className={styles['login-container']}>
+          <div className={styles['form-header']}>
+            <span>Don't have an account?{" "}
+              <button onClick={() => setIsLogin(false)}>Sign Up</button>
+            </span>
+            <h1>Login</h1>
           </div>
-          <div className="input-box">
-            <input type="text" className="input-field" placeholder="Username" />
-            <i className="bx bx-user"></i>
-          </div>
-          <div className="input-box">
-            <input type="password" className="input-field" placeholder="Password" />
-            <i className="bx bx-lock-alt"></i>
-          </div>
-          <div className="input-box">
-            <button className="submit">Login</button>
-          </div>
-          <div className="two-col">
-            <div className="one">
-              <input type="checkbox" id="login-check" />
-              <label htmlFor="login-check">Remember Me</label>
+          <div className={styles['input-group']}>
+            <div className="relative">
+              <input type="text" placeholder="Username" className={styles['input-field']} />
+              <span className={styles['input-icon']}>👤</span>
             </div>
-            <div className="two">
-              <label><a href="#">Forgot password?</a></label>
+          </div>
+          <div className={styles['input-group']}>
+            <div className="relative">
+              <input type="password" placeholder="Password" className={styles['input-field']} />
+              <span className={styles['input-icon']}>🔒</span>
             </div>
+          </div>
+          
+          <div>
+            <button className={styles['submit-btn']}>Login</button>
+          </div>
+          <div className={styles['form-footer']}>
+            <label>
+              <input type="checkbox" />
+              <span>Remember Me</span>
+            </label>
+            <button className="text-blue-200 hover:underline">Forgot password?</button>
           </div>
         </div>
 
-        <div className={`register-container ${!isLogin ? "active" : ""}`}>
-          <div className="top">
-            <span>Already have an account?{" "}<a href="#" onClick={() => setIsLogin(true)}>Login</a></span>
-            <header>Register</header>
-          </div>
-          <div className="two-forms">
-            <div className="input-box">
-              <input type="text" className="input-field" placeholder="First Name" />
-              <i className="bx bx-user"></i>
-            </div>
-            <div className="input-box">
-              <input type="text" className="input-field" placeholder="Last Name" />
-              <i className="bx bx-user"></i>
-            </div>
-          </div>
-          <div className="input-box">
-            <input type="email" className="input-field" placeholder="Email" />
-            <i className="bx bx-envelope"></i>
-          </div>
-          <div className="input-box">
-            <input type="password" className="input-field" placeholder="Password" />
-            <i className="bx bx-lock-alt"></i>
+        {/* Register Form Container */}
+        <div className={styles['register-container']}>
+          <div className={styles['form-header']}>
+            <span>Already have an account?{" "}
+              <button onClick={() => setIsLogin(true)}>Login</button>
+            </span>
+            <h1>Register</h1>
           </div>
 
-          <div className="input-box">
-            <button className="submit">Register</button>
+          <div className={styles['input-group']}>
+            <div className="flex space-x-4">
+              <div className="relative">
+                <input type="text" placeholder="First Name" className={styles['input-field']} />
+                <span className={styles['input-icon']}>👤</span>
+              </div>
+              <div className="relative">
+                <input type="text" placeholder="Last Name" className={styles['input-field']} />
+                <span className={styles['input-icon']}>👤</span>
+              </div>
+            </div>
           </div>
-         
+          <div className={styles['input-group']}>
+            <div className="relative">
+              <input type="email" placeholder="Email" className={styles['input-field']} />
+              <span className={styles['input-icon']}>📧</span>
+            </div>
+          </div>
+          <div className={styles['input-group']}>
+            <div className="relative">
+              <input type="password" placeholder="Password" className={styles['input-field']} />
+              <span className={styles['input-icon']}>🔒</span>
+            </div>
+          </div>
+
+          <div>
+            <button className={styles['submit-btn']}>Register</button>
+          </div>
         </div>
       </div>
     </div>
