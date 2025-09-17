@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import logo from '../assets/edunav-logo.png';
+import logo from '../../assets/logo.jpg'
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,8 +9,8 @@ const Header = () => {
         <div className="flex justify-between items-center py-4 md:py-6">
           
           <a href="/" className="flex items-center space-x-2">
-            {/* <img src={logo} alt="EduNav Logo" className="h-8 md:h-10" /> */}
-            <span className="text-3xl font-extrabold text-blue-600 tracking-wider">EduNav</span>
+            <img src={logo} alt="EduNav Logo" className="h-10 md:h-11 " />
+            {/* <span className="text-3xl font-extrabold text-blue-600 ">EduNav</span> */}
           </a>
 
           <nav className="hidden md:flex items-center space-x-8 lg:space-x-12">
