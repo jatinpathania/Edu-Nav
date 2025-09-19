@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Profile.css";
+import styles from './Profile.module.css';
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -19,22 +19,21 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-container">
-      {/* Profile on the left */}
-      <div className="profile-card">
-        <div className="profile-header">
+    <div className={styles['profile-container']}>
+      <div className={styles['profile-card']}>
+        <div className={styles['profile-header']}>
           <img
             src="https://via.placeholder.com/150"
             alt="Profile"
-            className="profile-photo"
+            className={styles['profile-photo']}
           />
           <h2>{student.name}</h2>
           <p>{student.bio}</p>
         </div>
 
-        <div className="profile-details">
+        <div className={styles['profile-details']}>
           {isEditing ? (
-            <div className="edit-form">
+            <div className={styles['edit-form']}>
               <input
                 type="text"
                 name="name"
@@ -62,7 +61,7 @@ const Profile = () => {
                 onChange={handleChange}
                 placeholder="Bio"
               />
-              <button className="save-btn" onClick={handleSave}>
+              <button className={styles['save-btn']} onClick={handleSave}>
                 Save
               </button>
             </div>
@@ -70,7 +69,7 @@ const Profile = () => {
             <>
               <p><strong>Email:</strong> {student.email}</p>
               <p><strong>Phone:</strong> {student.phone}</p>
-              <button className="edit-btn" onClick={() => setIsEditing(true)}>
+              <button className={styles['edit-btn']} onClick={() => setIsEditing(true)}>
                 Edit Profile
               </button>
             </>
@@ -78,8 +77,8 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="dashboard">
-        <div className="card">
+      <div className={styles.dashboard}>
+        <div className={styles.card}>
           <h3>Courses After +2</h3>
           <ul>
             <li>B.Sc Computer Science</li>
@@ -89,7 +88,7 @@ const Profile = () => {
           </ul>
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h3>Interests & Preferred Streams</h3>
           <ul>
             <li>Artificial Intelligence</li>
@@ -100,7 +99,7 @@ const Profile = () => {
           </ul>
         </div>
 
-        <div className="card">
+        <div className={styles.card}>
           <h3>Top Colleges</h3>
           <ul>
             <li>IIT Delhi</li>
@@ -109,9 +108,9 @@ const Profile = () => {
           </ul>
         </div>
 
-        <div className="card timeline-card">
+        <div className={styles['timeline-card']}>
           <h3>Timeline</h3>
-          <ul className="timeline">
+          <ul className={styles.timeline}>
             <li>Class 10 Completed (2022)</li>
             <li>Class 12 Completed (2024)</li>
             <li>Preparing for College Admissions (2025)</li>
